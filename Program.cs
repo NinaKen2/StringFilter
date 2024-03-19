@@ -41,18 +41,23 @@ class Homework {
     // фильтрация коротких строк
     public static string[] filterShortStrings(string[] data, int max_len)
     {
-        string[] short_strings = new string[data.Length];
-
-        int new_count = 0;
+        // сколько строк имеет длину не более max_len
+        int count = 0;
 
         for (int i = 0; i < data.Length; ++i)
         {
             if (data[i].Length <= max_len)
-                short_strings[new_count++] = data[i];
-        }     
+                count++;
+        }  
 
-        string[] result = new string[new_count];
-        Array.Copy(short_strings, 0, result, 0, new_count);
+        string[] result = new string[count];
+
+        for (int i = 0, j = 0; i < data.Length; ++i)
+        {
+            if (data[i].Length <= max_len)
+                result[j++] = data[i];
+        }
+
         return result;
     }
 } 
